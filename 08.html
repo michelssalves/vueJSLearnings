@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">
+        <p v-once>Opening initial: {{ balance}}</p>
+        <p>Updated Balance {{ balance}}</p>
+        <input type="text" id="value">
+        <button @click="credit()">Credit</button>
+        <button @click="debit()">Debit</button>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+            
+           balance: 1200
+        }
+    },
+        methods:{
+            credit(){
+                this.balance += parseFloat(value.value)
+            },
+            debit(){
+                this.balance -= parseFloat(value.value)
+            }
+  
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

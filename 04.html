@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">
+        <input type="text" id="inputText">
+        <br>
+        <select name="" id="options">
+            <option value="A">Option 1</option>
+            <option value="B">Option 2</option>
+            <option value="C">Option 3</option>
+            <option value="D">Option 4</option>
+            <option value="E">Option 5</option>
+        </select>    
+        <br>
+        <p id="paragraph" style="color:red">Paragraph</p>    
+
+        <div id="block">Internal Content of DIV</div>
+        <br>
+        <button @click="selectChildElement">Button</button>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+
+            
+        }
+    },
+        methods:{
+            selectChildElement(){
+                console.log(inputText.value)
+                console.log(options.value)
+                console.log(paragraph.style.color)
+                console.log(block.innerHTML)
+            }
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

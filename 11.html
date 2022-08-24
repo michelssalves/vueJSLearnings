@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">  
+        <h4>Add Patients</h4>
+        <span>Name: </span><input type="text" id="inputName"><br>
+        <span>Age:  </span><input type="text" id="inputAge"><br>
+        <span>Plan: </span><input type="text" id="inputPlan"><br>
+        <button @click="addPatient()">Add</button>
+        <hr>
+        <h4>The last patitent registred</h4>
+        <p v-if="patients.length > 0">
+            {{ lastPatient }}
+        </p>
+        <hr>
+        <h4>Patients gold plan </h4>
+        <p v-for="p in goldPatient">{{ p.name }}</p>
+        <hr>
+        <h4>Patients registreds</h4>
+        <p v-for="p in patients">{{ p.name }}</p>
+    </div>
+    <script>
+
+    const { createApp } = Vue
+    createApp({
+        data() {
+        return {
+            patients: []
+        }
+    },
+        methods:{
+            addPatient(){
+                this.patients.push(
+                    {
+                        name: inputName.value,
+                        age: inputAge.value,
+                        plan: inputPlan.value
+
+                    }
+                )
+            }
+  
+        },
+        computed:{
+            lastPatient(){
+                let key = this.patients.length - 1
+                let txt = ''
+
+                txt += 'Patient: '+  this.patients[key].name
+                txt += ' Age: ' + this.patients[key].age     
+                txt += ' Plan: ' + this.patients[key].plan  
+                
+                return txt.toUpperCase()
+            },
+            goldPatient(){
+                return this.patients.filter(item => item.plan == 'gold')
+            }
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

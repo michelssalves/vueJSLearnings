@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">
+        <ul>
+            <li v-for="c in comments">
+                {{ c.id}} -
+                {{ c.comment}}
+            </li>
+        </ul>
+        <button @click="addComment()">Add Comment</button>
+        <button @click="removeComment()">Remove Comment</button>
+        <button @click="alterComment()">Alter Comment</button>
+        <ul>
+            <li v-for="n in numero">{{ n }}</li>
+        </ul>
+        <ul>
+            <li v-for="(course, key) in courses" v-text="key + ' - ' +course"></li>
+        </ul>
+        <hr>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Describe</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr v-for="(course, key) in courses2">
+                    <td>{{ key }}</td>
+                    <td>{{ course.title }}</td>
+                    <td>{{ course.describe }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <hr>
+        <ul>
+            <li v-for="p in publications" style="border: solid 1px; margin-bottom:10px" :key="p.id">
+                <div>
+                    {{ p.publication }}
+                    <hr>
+                    <input type="text">
+                </div>
+            </li>
+        </ul>
+        <button @click="mixArray()">Mix Publications</button>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+            comments:[
+                {id: 1, comment: 'Cool'},
+                {id: 2, comment: 'Nice'},
+                {id: 3, comment: 'Like'},
+                {id: 4, comment: 'Love'},
+
+            ],
+            numero: 5,
+            courses: ['Laravel', 'Java', 'JavaScript', 'Solid'] ,
+            courses2: {
+                1000: {title: 'Laravel', describe: 'learn the most powerful framework in the world'},
+                1001: {title: 'Java', describe: 'learn the hardest language in the world '},
+                1002: {title: 'JavaScrip', describe: 'learn the most beautiful language in the world '},
+                1003: {title: 'Solid', describe: 'learn the  most unknown language in the world '},
+            },
+            publications: [
+                {id: 1, publication: 'Hello World 1'},
+                {id: 2, publication: 'Hello World 2'},
+                {id: 3, publication: 'Hello World 3'},
+            ]   
+        }
+    },
+        methods:{
+
+            mixArray(){
+                let mixed = []
+
+                mixed[0] = this.publications[2]
+                mixed[1] = this.publications[0]
+                mixed[2] = this.publications[1]
+                
+                this.publications = mixed
+            },
+            addComment(){
+        
+                this.comments.push({id: 5, comment:'Nice to meet you'})
+         
+            },
+            removeComment(){
+
+                this.comments.pop()
+            },
+            alterComment(){
+              //  this.comments['1'] =  { id: 2, comment: 'Hater'}
+               // console.log(this.comments)
+               this.comments.$set(
+                    this.comments, 
+                    0,
+                    { id: 1, comment: 'Hater'} 
+                )
+            }
+  
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        .white{
+            background-color: white;
+        }
+        .green{
+            background-color: green;
+        }
+        .blue {
+            background-color: blue;
+        }
+        .red {
+            background-color: red;
+        }
+        .border {
+            border:1px solid
+        }
+
+        .div-main{
+            width: 200px;
+            height: 200px;
+        }
+        .div-common{
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+    </style>
+</head>
+    <div id="app">
+        <div class="border div-main" :class="collor">
+           Collor: {{ collor }}
+           <br>
+           Mouse Position X: {{ positionX }}
+           <br>
+           Mouse Position Y: {{ positionY }}
+        </div>
+        <hr>
+        <div @click="changeCollor('green')" class="border div-common"></div>
+        <div @mouseover="changeCollor('blue')" @mouseout="changeCollor('red')" class="border div-common"></div>
+        <div @mousemove="coordinates($event)" class="border div-common"></div>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+            collor: 'branco',
+            positionX: 0,
+            positionY: 0
+            
+        }
+    },
+        methods:{
+
+            changeCollor(collor){
+                this.collor = collor
+            },
+            coordinates($event){
+                this.positionX = event.layerX
+                this.positionY = event.layerY
+            }           
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">
+        <p @mouseover="showTextHelp = true" @mouseout="showTextHelp = false">Example tooltip</p>
+        <div v-show="showTextHelp">
+            <h3>Title text help</h3>
+            <p>Content text help</p>
+        </div>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+            showTextHelp: false
+            
+        }
+    },
+        methods:{
+
+
+
+            
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

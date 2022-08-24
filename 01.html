@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+    <style>
+        .red{
+            color: red;
+        }
+    </style>
+</head>
+    <div id="app">
+    {{ message }}<br>
+    Total Value: {{ totalValue }}<br>
+    Logged? {{ logged}}<br>
+    Hobbie: {{ hobbies[1] }}<br>
+    Profile: {{ profile.site }}<br>
+    Courses: {{ profile.courses[1].name }}<br>
+    {{ sum() }}<br>
+    {{ subtract() }}<br>
+    {{ multiply() }}<br>
+    {{ share() }}<br>
+    {{randomNumber()}}<br>
+    <a target="_blank" :href="site"><p>Site</p></a>
+    <p :class="color">Learn about derective v-bind</p>  
+    <input :placeholder="instruction" :value="animal" type="text">
+    <input type="checkbox" :checked="check">
+    <input type="text" @keyup="printText('Send Parameter', 5)">
+    <button type="submit" @click="messsageAlert($event)">Button</button>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+           
+            xyz: true,
+            color: 'red',
+            site: 'alvemichel.cf',
+            instruction: 'Placeholder - Derective v-bind',
+            animal: 'Horse',
+            check: true,
+            n1: 80,
+            n2: 5,
+            message: 'AMOR',
+            totalVaule: 150.47,
+            logged: true,
+            hobbies: [
+                'Sleep',
+                'Run',
+                'Play Soccer'
+            ],
+            profile:{
+                name: 'Michel Alves',
+                site: 'michelssalves.com.br',
+                idade: 28,
+                courses:[
+                    {name: 'Laravel', Hours: '50 hours'},
+                    {name: 'Java', Hours: '40 hours'}
+                ]
+            }
+
+        }
+        },
+        methods:{
+
+            printText(t, n, x){
+                console.log(t)
+                console.log(n)
+                console.log(this.xyz)
+            },
+            messsageAlert($event){
+               console.log(event)
+            },
+            sum: function addUp(){ // convencional
+                    //return 4 + 2
+                    return this.n1 + this.n2
+                },
+            subtract: function(){ // anonima
+                    //return 4 - 2
+                    return this.n1 - this.n2
+                },
+            multiply: () => {
+                 // arrow function
+                return 60 * 4
+                //return this.n1 * this.n2
+                
+                },
+            share(){ // forma resumida
+                    return 10/2
+                    return this.n1 / this.n2
+                }, 
+            randomNumber(){
+
+                return Math.random()
+            }        
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>

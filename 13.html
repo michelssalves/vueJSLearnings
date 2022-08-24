@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">  
+        <span>Patient: </span><input type="text" v-model="patient">
+        <br>
+        <ul>
+            <li v-for="p in list">{{ p.name }}, {{ p.age }}</li>
+        </ul>    
+    </div>
+    <script>
+
+    const { createApp } = Vue
+    createApp({
+        data() {
+        return {
+            patient: '',
+            patients: [
+                {name: 'Michel Alves' , age: 32},
+                {name: 'Gabriel' , age: 55},
+                {name:'Alex' , age: 40},
+                {name: 'Mayumi' , age: 42},
+                {name: 'Paulo' , age: 39},
+                {name: 'Anderson' , age: 52}
+            ],
+            list: []
+        }
+    },
+        methods:{
+
+        },
+        computed:{
+
+        },
+        watch:{
+            patient(newValue){
+                console.log(newValue)
+                this.list = this.patients.filter(p => p.name.match(newValue))
+            }
+        }   
+    }).mount('#app')
+    </script>
+</body>
+</html>

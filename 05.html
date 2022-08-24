@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://unpkg.com/vue@3"></script>
+</head>
+    <div id="app">
+        <button @click="displayBalance = !displayBalance">
+            <span v-if="!displayBalance">Display Balance</span>
+            <span v-if="displayBalance">Hide Balance</span>
+        </button>
+        <p>Balance: <span v-if="displayBalance"> R$ {{ balance }}</span></p>
+        <hr>
+
+        Age: <input type="text" id="inputAge" @blur="setAge()">
+        {{ age}}
+        <p v-if="age < 18">Minor</p>
+        <p v-else>Of Age</p>
+
+        <hr>
+
+        Note: <input type="text" id="inputNote" @blur="setNote()">
+        <p v-if="note == ''">Enter studente grade </p>
+        <p v-else-if="note >= 7 && note <= 10">Approved Student</p>
+        <p v-else-if="note >= 5 && note < 7">Student in recovery</p>
+        <p v-else-if="note >= 0 && note < 5">Failed Student</p>
+        <p v-else>Note informed is invalid</p>
+    </div>
+    <script>
+    const { createApp } = Vue
+
+    createApp({
+        data() {
+        return {
+            balance: 4570.17,
+            displayBalance: false,
+            age: 0,
+            note: 0
+            
+        }
+    },
+        methods:{
+
+            setAge(){
+                this.age = inputAge.value
+            },
+            setNote(){
+                this.note = inputNote.value
+    
+            }
+
+            
+        }
+    }).mount('#app')
+    </script>
+</body>
+</html>
